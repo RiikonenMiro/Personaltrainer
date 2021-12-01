@@ -4,18 +4,18 @@ import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-material.css';
 
-export default function Customerlist() {
+export default function Traininglist() {
 
-    const [customers, setCustomers] = useState([]);
+    const [trainings, setTrainings] = useState([]);
 
     
 
     const fetchData = () => {
-        fetch('https://customerrest.herokuapp.com/api/customers').then(async response => {
+        fetch('https://customerrest.herokuapp.com/api/trainings').then(async response => {
             try {
                 const data = await response.json();
                 console.log(data.content);
-                setCustomers(data.content);
+                setTrainings(data.content);
             } catch (error) {
                 console.error(error);
             }
@@ -23,13 +23,9 @@ export default function Customerlist() {
     }
 
     const columns = [
-        { field: 'firstname', sortable: true, filter: true },
-        { field: 'lastname', sortable: true, filter: true },
-        { field: 'streetaddress', sortable: true, filter: true },
-        { field: 'postcode', sortable: true, filter: true },
-        { field: 'city', sortable: true, filter: true },
-        { field: 'email', sortable: true, filter: true },
-        { field: 'phone', sortable: true, filter: true, }
+        { field: 'activity', sortable: true, filter: true },
+        { field: 'date', sortable: true, filter: true },
+        { field: 'duration', sortable: true, filter: true },
     ]
 
     useEffect(() => {
@@ -38,10 +34,10 @@ export default function Customerlist() {
 
     return (
         <div className="ag-theme-material" style={{height: 800, width: 1200, marginTop: 20, margin: 'auto'}}>
-            <h2>Customers</h2>
+            <h2>Trainings</h2>
             <AgGridReact
                 columnDefs={columns}
-                rowData={customers}
+                rowData={trainings}
                 pagination="true"
                 paginationPageSize="14"
                 >
