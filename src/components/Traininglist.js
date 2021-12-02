@@ -25,14 +25,7 @@ export default function Traininglist() {
 
     const columns = [
         { field: 'activity', sortable: true, filter: true },
-        { field: 'date', sortable: true, filter: true, cellRendererFramework: function (params){
-            return (
-                <p>{format(parseISO(params.data.date), 'dd.MM.yyyy hh:mm a', { timeZone: "UTC" })}</p>
-            );
-            }, getQuickFilterText: function (params) {
-                return format(parseISO(params.data.date), 'dd.MM.yyyy hh:mm a', { timeZone: "UTC" });
-            }
-        },
+        { field: 'date', sortable: true, filter: true },
         { field: 'duration', sortable: true, filter: true },
     ]
 
@@ -41,7 +34,7 @@ export default function Traininglist() {
     }, []);
 
     return (
-        <div className="ag-theme-material" style={{height: 800, width: 1200, marginTop: 20, margin: 'auto'}}>
+        <div className="ag-theme-material" style={{height: 800, width: '100%', marginTop: 20, marginLeft: 20, margin: 'auto'}}>
             <h2>Trainings</h2>
             <AgGridReact
                 columnDefs={columns}

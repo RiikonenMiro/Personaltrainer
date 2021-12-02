@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { AgGridReact } from 'ag-grid-react';
+import Button from '@mui/material/Button';
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-material.css';
 
+import Addcustomer from './Addcustomer';
+import Editcustomer from './Editcustomer';
+import { border } from '@mui/system';
+
 export default function Customerlist() {
 
     const [customers, setCustomers] = useState([]);
-
     
 
     const fetchData = () => {
@@ -29,23 +35,74 @@ export default function Customerlist() {
         { field: 'postcode', sortable: true, filter: true },
         { field: 'city', sortable: true, filter: true },
         { field: 'email', sortable: true, filter: true },
-        { field: 'phone', sortable: true, filter: true, }
+        { field: 'phone', sortable: true, filter: true, },
+        { field: 'delete customer', cellRendererFramework: function (params) {
+                return (
+                    <Button variant="contained" 
+                    onClick={() => deleteCustomer(params.data.links[0].href)} color="error">Delete</Button>
+                );
+            }
+        },
+        { field: 'edit customer', cellRendererFramework: function (params) {
+            return (
+                <Editcustomer variant="contained" customer={params.data} editCustomer={editCustomer} />
+            );
+        }
+    }
     ]
+
+    const deleteCustomer = (url) => {
+        if (window.confirm("Would you like to delete the selected customer?")) {
+            fetch(url, { method: 'DELETE' })
+                .then(res => { fetchData(); alert("Customer deleted succesfully!")})
+                .catch(err => console.error(err));
+        }
+    }
+
+    const saveCustomer = (customer) => {
+        if (!customer.firstname || !customer.lastname || !customer.email || !customer.phone || !customer.streetaddress || !customer.postcode || !customer.city) {
+            return (
+                alert("Error, please check that all text fields are filled!")
+            );
+        }
+        fetch('https://customerrest.herokuapp.com/api/customers', { method: 'POST', headers: { 'Content-type': 'application/json' }, body: JSON.stringify(customer) })
+            .then(response => response.json())
+            .then(data => { fetchData();})
+            .catch(err => console.error(err))
+    }
+
+    const editCustomer = (customer, url) => {
+        if (!customer.firstname || !customer.lastname || !customer.email || !customer.phone || !customer.streetaddress || !customer.postcode || !customer.city) {
+            return (
+                alert("Error, please check that all text fields are filled!")
+            );
+        }
+        fetch(url, { method: 'PUT', headers: { 'Content-type': 'application/json' }, body: JSON.stringify(customer) })
+            .then(response => response.json())
+            .then(data => { fetchData(); alert("Customer has been updated succesfully!") })
+            .catch(err => console.error(err))
+    }
+
 
     useEffect(() => {
         fetchData();
     }, []);
 
     return (
-        <div className="ag-theme-material" style={{height: 800, width: 1200, marginTop: 20, margin: 'auto'}}>
+        <div style={{ agCell: { display: 'flex', alignItems: 'center'} }}>
             <h2>Customers</h2>
-            <AgGridReact
-                columnDefs={columns}
-                rowData={customers}
-                pagination="true"
-                paginationPageSize="14"
-                >
-            </AgGridReact>  
+            <div>
+                <Addcustomer saveCustomer={saveCustomer} />
+            </div>
+            <div className="ag-theme-material" style={{height: 800, width: '100%', marginTop: 20, marginLeft: 20, margin: 'auto'}}>
+                <AgGridReact
+                    columnDefs={columns}
+                    rowData={customers}
+                    pagination="true"
+                    paginationPageSize="14"
+                    >
+                </AgGridReact>  
+            </div>
         </div>
     );
 }
