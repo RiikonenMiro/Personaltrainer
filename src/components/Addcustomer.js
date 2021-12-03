@@ -30,8 +30,8 @@ export default function Addcustomer(props) {
         setOpen(false);
     }
 
-    const handleInputChange = (e) => {
-        setCustomer({ ...customer, [e.target.name]: e.target.value });
+    const handleInputChange = (event) => {
+        setCustomer({ ...customer, [event.target.name]: event.target.value });
     }
 
     const save = () => {
@@ -55,7 +55,7 @@ export default function Addcustomer(props) {
                         margin="dense"
                         name="firstname"
                         value={customer.firstname}
-                        onChange={e => handleInputChange(e)}
+                        onChange={event => handleInputChange(event)}
                         label="Firstname"
                         type="text"
                         fullWidth
@@ -66,7 +66,7 @@ export default function Addcustomer(props) {
                         margin="dense"
                         name="lastname"
                         value={customer.lastname}
-                        onChange={e => handleInputChange(e)}
+                        onChange={event => handleInputChange(event)}
                         label="Lastname"
                         type="text"
                         fullWidth
@@ -77,7 +77,7 @@ export default function Addcustomer(props) {
                         margin="dense"
                         name="email"
                         value={customer.email}
-                        onChange={e => handleInputChange(e)}
+                        onChange={event => handleInputChange(event)}
                         label="Email"
                         type="text"
                         fullWidth
@@ -88,7 +88,7 @@ export default function Addcustomer(props) {
                         margin="dense"
                         name="phone"
                         value={customer.phone}
-                        onChange={e => handleInputChange(e)}
+                        onChange={event => handleInputChange(event)}
                         label="Phonenumber"
                         type="text"
                         fullWidth
@@ -99,7 +99,7 @@ export default function Addcustomer(props) {
                         margin="dense"
                         name="streetaddress"
                         value={customer.streetaddress}
-                        onChange={e => handleInputChange(e)}
+                        onChange={event => handleInputChange(event)}
                         label="Street Address"
                         type="text"
                         fullWidth
@@ -110,7 +110,7 @@ export default function Addcustomer(props) {
                         margin="dense"
                         name="postcode"
                         value={customer.postcode}
-                        onChange={e => handleInputChange(e)}
+                        onChange={event => handleInputChange(event)}
                         label="Postcode"
                         type="number"
                         fullWidth
@@ -121,7 +121,7 @@ export default function Addcustomer(props) {
                         margin="dense"
                         name="city"
                         value={customer.city}
-                        onChange={e => handleInputChange(e)}
+                        onChange={event => handleInputChange(event)}
                         label="City"
                         type="text"
                         fullWidth

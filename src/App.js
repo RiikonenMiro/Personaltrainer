@@ -22,14 +22,13 @@ function App() {
 
   return (
     <div className="App">
-      <AppBar position="static">
+      <AppBar position="static" color="primary">
         <Toolbar variant="dense">
           <Button onClick={() => toggleDrawer(true)} variant="contained" color="secondary" style={{ margin: '10px' }}>Menu</Button>
           <Drawer anchor="left"
             variant="temporary"
             open={drawerOpen}
             onClose={() => toggleDrawer(false)}
-            onOpen={() => toggleDrawer(true)}
           >
             <Box>
               <Typography variant="h4" align="center" style={{ marginTop: '10px' }}>Menu</Typography>
@@ -44,7 +43,7 @@ function App() {
             </Box>
           </Drawer>
           <Typography variant="h6">
-            Personal Trainer App
+            Personal Trainer
           </Typography>
         </Toolbar>
       </AppBar>
