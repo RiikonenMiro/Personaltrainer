@@ -8,10 +8,11 @@ import 'ag-grid-community/dist/styles/ag-theme-material.css';
 import Addcustomer from './Addcustomer';
 import Editcustomer from './Editcustomer';
 
+
 export default function Customerlist() {
 
     const [customers, setCustomers] = useState([]);
-    
+    const [gridApi, setGridApi] = useState(null);
 
     const fetchData = () => {
         fetch('https://customerrest.herokuapp.com/api/customers').then(async response => {
@@ -79,6 +80,13 @@ export default function Customerlist() {
             .catch(err => console.error(err))
     }
 
+    const gridReady = (params) => {
+        setGridApi(params.api);
+    }
+
+    function onBtnExport() {
+        gridApi.exportDataAsCsv();
+    }
 
     useEffect(() => {
         fetchData();
@@ -89,6 +97,7 @@ export default function Customerlist() {
             <h2>Customers</h2>
             <div>
                 <Addcustomer saveCustomer={saveCustomer} />
+                <Button variant="contained" color="secondary" onClick={onBtnExport} >Export table to CSV file</Button>
             </div>
             <div className="ag-theme-material" style={{ height: 800, width: '100%', marginTop: 20, marginLeft: 20, margin: 'auto'}}>
                 <AgGridReact
@@ -96,6 +105,7 @@ export default function Customerlist() {
                     rowData={customers}
                     pagination="true"
                     paginationPageSize="14"
+                    onGridReady={gridReady}
                     >
                 </AgGridReact>  
             </div>
