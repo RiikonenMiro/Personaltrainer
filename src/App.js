@@ -23,8 +23,8 @@ function App() {
 
   return (
     <div className="App">
-      <AppBar position="static" color="primary">
-        <Toolbar variant="dense">
+      <AppBar position="sticky" color="primary">
+        <Toolbar>
           <Button onClick={() => toggleDrawer(true)} variant="contained" color="secondary" style={{ margin: '10px' }}>Menu</Button>
           <Drawer anchor="left"
             variant="temporary"

@@ -12,6 +12,7 @@ export default function Calendar() {
                 const trainingArray = [];
 
                 data.forEach(training => {
+
                     const title = training.activity + " (" + training.duration + " min) " + training.customer.firstname + " " + training.customer.lastname;
 
                     const date = new Date(training.date);
