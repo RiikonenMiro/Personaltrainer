@@ -99,7 +99,7 @@ export default function Customerlist() {
                 <Addcustomer saveCustomer={saveCustomer} />
                 <Button variant="contained" color="secondary" onClick={onBtnExport} >Export table to CSV file</Button>
             </div>
-            <div className="ag-theme-material" style={{ height: 800, width: '100%', marginTop: 20, marginLeft: 20, margin: 'auto'}}>
+            <div className="ag-theme-material" style={{ height: 800, width: '80%', marginTop: 20, marginLeft: 20, margin: 'auto'}}>
                 <AgGridReact
                     columnDefs={columns}
                     rowData={customers}

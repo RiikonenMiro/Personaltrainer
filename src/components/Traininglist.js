@@ -57,7 +57,7 @@ export default function Traininglist() {
             return alert("Error, please check that all text fields are filled!")
         }
         fetch('https://customerrest.herokuapp.com/api/trainings', { method: 'POST', headers: { 'Content-type': 'application/json' }, body: JSON.stringify(training) })
-            .then(response => { response.json(); console.log(response); })
+            .then(response => { response.json(); })
             .then(data => { fetchData(); alert("Successfully added training to a customer!") })
             .catch(error => console.error(error))
     }
@@ -80,7 +80,7 @@ export default function Traininglist() {
             <div>
                 <Addtraining saveTraining={saveTraining}/>
             </div>
-            <div className="ag-theme-material" style={{height: 800, width: '100%', marginTop: 20, marginLeft: 20, margin: 'auto'}}>
+            <div className="ag-theme-material" style={{height: 800, width: '80%', marginTop: 20, marginLeft: 20, margin: 'auto'}}>
                 <AgGridReact
                     columnDefs={columns}
                     rowData={trainings}
