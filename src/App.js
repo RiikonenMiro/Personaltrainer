@@ -12,6 +12,7 @@ import ListItem from '@mui/material/ListItem';
 import Customerlist from './components/Customerlist';
 import Traininglist from './components/Traininglist';
 import Calendar from './components/Calendar';
+import Statistics from './components/Statistics';
 
 function App() {
   const [value, setValue] = useState('customerlist')
@@ -43,6 +44,9 @@ function App() {
                 <ListItem>
                   <Button onClick={() => setValue("calendar")} color="primary">Calendar</Button>
                 </ListItem>
+                <ListItem>
+                  <Button onClick={() => setValue("statistics")} color="primary">Statistics</Button>
+                </ListItem>
               </List>
             </Box>
           </Drawer>
@@ -54,6 +58,7 @@ function App() {
       {value === 'customerlist' && <Customerlist />}
       {value === 'traininglist' && <Traininglist />}
       {value === 'calendar' && <Calendar />}
+      {value === 'statistics' && <Statistics />}
 
     </div>
   );
