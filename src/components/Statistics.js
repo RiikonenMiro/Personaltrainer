@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import _ from 'lodash';
-import { BarChart, XAxis, YAxis, Bar, Tooltip, Cell } from 'recharts';
+import { BarChart, XAxis, YAxis, Bar, Tooltip} from 'recharts';
 
 export default function Statistics() {
 

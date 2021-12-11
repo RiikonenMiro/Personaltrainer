@@ -97,7 +97,7 @@ export default function Customerlist() {
             <h2>Customers</h2>
             <div>
                 <Addcustomer saveCustomer={saveCustomer} />
-                <Button variant="contained" color="secondary" onClick={onBtnExport} >Export table to CSV file</Button>
+                <Button variant="contained" color="secondary" onClick={onBtnExport} >Export table to a CSV file</Button>
             </div>
             <div className="ag-theme-material" style={{ height: 800, width: '80%', marginTop: 20, marginLeft: 20, margin: 'auto'}}>
                 <AgGridReact
